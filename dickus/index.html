@@ -1,0 +1,37 @@
+---
+# Esto se deja vacío, es para que GitHub sepa que debe procesar el archivo
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index of {{ page.url }}</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        h1 { border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+        table { width: 100%; }
+        th { text-align: left; }
+        .icon { width: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Index of {{ site.baseurl }}/</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tamaño</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in site.static_files %}
+            <tr>
+                <td><a href="{{ site.baseurl }}{{ file.path }}">{{ file.name }}</a></td>
+                <td>{{ file.size | divided_by: 1024 }} KB</td>
+                <td>{{ file.modified_time | date: "%Y-%m-%d %H:%M" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
