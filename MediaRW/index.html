@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería y Catálogo de Media</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #bb86fc;
+            margin-top: 40px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 150px;
+            border: 1px solid #333;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            border-color: #bb86fc;
+        }
+        .card img, .card video {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .list-item {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .list-item a {
+            color: #03dac6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .list-item a:hover {
+            text-decoration: underline;
+        }
+        audio {
+            height: 30px;
+        }
+        
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+        }
+        #lightbox-content img, #lightbox-content video {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 4px;
+        }
+        #lightbox-caption {
+            color: white;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            word-wrap: break-word;
+            max-width: 80%;
+            text-align: center;
+        }
+        #close-btn {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #close-btn:hover {
+            color: #bb86fc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Catálogo de Archivos del Servidor</h1>
+
+    <h2>Imágenes</h2>
+    <div class="grid">
+        <div class="card" onclick="openLightbox('img', '0ud4ce2i4yma1-c2d93947aceaf3f2.png')">
+            <img src="0ud4ce2i4yma1-c2d93947aceaf3f2.png" alt="0ud4ce2i4yma1-c2d93947aceaf3f2.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1-C._archeri-969912169e2620b4.jpg')">
+            <img src="1-C._archeri-969912169e2620b4.jpg" alt="1-C._archeri-969912169e2620b4.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1000_F_246690580_J9K7S1aPC4AIVwXpAnT4pmv7N-44f519c36857bf6b.jpg')">
+            <img src="1000_F_246690580_J9K7S1aPC4AIVwXpAnT4pmv7N-44f519c36857bf6b.jpg" alt="1000_F_246690580_J9K7S1aPC4AIVwXpAnT4pmv7N-44f519c36857bf6b.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1002-1bd3d19799678ddc.png')">
+            <img src="1002-1bd3d19799678ddc.png" alt="1002-1bd3d19799678ddc.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1010_sin_titulo_20230125173536-b9c1576153f9eec7.png')">
+            <img src="1010_sin_titulo_20230125173536-b9c1576153f9eec7.png" alt="1010_sin_titulo_20230125173536-b9c1576153f9eec7.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1029_sin_titulo2_20230129195148-da3e70021100bbdc.png')">
+            <img src="1029_sin_titulo2_20230129195148-da3e70021100bbdc.png" alt="1029_sin_titulo2_20230129195148-da3e70021100bbdc.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1029_sin_titulo2_20230129195254-8da6ae131b107e16.png')">
+            <img src="1029_sin_titulo2_20230129195254-8da6ae131b107e16.png" alt="1029_sin_titulo2_20230129195254-8da6ae131b107e16.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1029_sin_titulo2_20230129195633-2bfd854964e09662.png')">
+            <img src="1029_sin_titulo2_20230129195633-2bfd854964e09662.png" alt="1029_sin_titulo2_20230129195633-2bfd854964e09662.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1029_sin_titulo2_20230129200210-20d65ba0f7a0d90d.png')">
+            <img src="1029_sin_titulo2_20230129200210-20d65ba0f7a0d90d.png" alt="1029_sin_titulo2_20230129200210-20d65ba0f7a0d90d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1029_sin_titulo2_20230129200320-3f20517b63157295.png')">
+            <img src="1029_sin_titulo2_20230129200320-3f20517b63157295.png" alt="1029_sin_titulo2_20230129200320-3f20517b63157295.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1029_sin_titulo2_20230129200320-c0ea97aeddeb731a.png')">
+            <img src="1029_sin_titulo2_20230129200320-c0ea97aeddeb731a.png" alt="1029_sin_titulo2_20230129200320-c0ea97aeddeb731a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1029_sin_titulo_20230129194058-3051c253fa6f95be.png')">
+            <img src="1029_sin_titulo_20230129194058-3051c253fa6f95be.png" alt="1029_sin_titulo_20230129194058-3051c253fa6f95be.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1029_sin_titulo_20230129194332-8282e3692781def8.png')">
+            <img src="1029_sin_titulo_20230129194332-8282e3692781def8.png" alt="1029_sin_titulo_20230129194332-8282e3692781def8.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1029_sin_titulo_20230129194332-bbd34da35756e6ec.png')">
+            <img src="1029_sin_titulo_20230129194332-bbd34da35756e6ec.png" alt="1029_sin_titulo_20230129194332-bbd34da35756e6ec.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1030_sin_titulo_20230129201206-2a7c7e5080bed984.png')">
+            <img src="1030_sin_titulo_20230129201206-2a7c7e5080bed984.png" alt="1030_sin_titulo_20230129201206-2a7c7e5080bed984.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1030_sin_titulo_20230129201206-6ff485bd977938eb.png')">
+            <img src="1030_sin_titulo_20230129201206-6ff485bd977938eb.png" alt="1030_sin_titulo_20230129201206-6ff485bd977938eb.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1031_sin_titulo_20230129202122-14cfd94daf2afd6c.png')">
+            <img src="1031_sin_titulo_20230129202122-14cfd94daf2afd6c.png" alt="1031_sin_titulo_20230129202122-14cfd94daf2afd6c.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1031_sin_titulo_20230129202314-cc5659d0d884ca91.png')">
+            <img src="1031_sin_titulo_20230129202314-cc5659d0d884ca91.png" alt="1031_sin_titulo_20230129202314-cc5659d0d884ca91.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1031_sin_titulo_20230129202404-352b8a4fd7f54f6b.png')">
+            <img src="1031_sin_titulo_20230129202404-352b8a4fd7f54f6b.png" alt="1031_sin_titulo_20230129202404-352b8a4fd7f54f6b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1032_sin_titulo_20230129202808-677f71b629a44dd9.png')">
+            <img src="1032_sin_titulo_20230129202808-677f71b629a44dd9.png" alt="1032_sin_titulo_20230129202808-677f71b629a44dd9.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1032_sin_titulo_20230129202808-de592bfa9132a44d.png')">
+            <img src="1032_sin_titulo_20230129202808-de592bfa9132a44d.png" alt="1032_sin_titulo_20230129202808-de592bfa9132a44d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1083419059728699432-026eec77737fee8b.gif')">
+            <img src="1083419059728699432-026eec77737fee8b.gif" alt="1083419059728699432-026eec77737fee8b.gif" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1094_sin_titulo_20230205212123-da2d40f2f0d2c44d.png')">
+            <img src="1094_sin_titulo_20230205212123-da2d40f2f0d2c44d.png" alt="1094_sin_titulo_20230205212123-da2d40f2f0d2c44d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1094_sin_titulo_20230205212134-0b70bede4fe9df6b.png')">
+            <img src="1094_sin_titulo_20230205212134-0b70bede4fe9df6b.png" alt="1094_sin_titulo_20230205212134-0b70bede4fe9df6b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1094_sin_titulo_20230205212143-de28b6b1934b8721.png')">
+            <img src="1094_sin_titulo_20230205212143-de28b6b1934b8721.png" alt="1094_sin_titulo_20230205212143-de28b6b1934b8721.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1094_sin_titulo_20230205212226-5128793151e08eea.png')">
+            <img src="1094_sin_titulo_20230205212226-5128793151e08eea.png" alt="1094_sin_titulo_20230205212226-5128793151e08eea.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1095_sin_titulo_20230205213529-8bcffe891e6f141e.png')">
+            <img src="1095_sin_titulo_20230205213529-8bcffe891e6f141e.png" alt="1095_sin_titulo_20230205213529-8bcffe891e6f141e.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1095_sin_titulo_20230205213733-e5721bbdcbd70c09.png')">
+            <img src="1095_sin_titulo_20230205213733-e5721bbdcbd70c09.png" alt="1095_sin_titulo_20230205213733-e5721bbdcbd70c09.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1095_sin_titulo_20230205213852-03e6759860d908df.png')">
+            <img src="1095_sin_titulo_20230205213852-03e6759860d908df.png" alt="1095_sin_titulo_20230205213852-03e6759860d908df.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1095_sin_titulo_20230205214024-ac9a9f19dfe78371.png')">
+            <img src="1095_sin_titulo_20230205214024-ac9a9f19dfe78371.png" alt="1095_sin_titulo_20230205214024-ac9a9f19dfe78371.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1097_sin_titulo_20230205214211-4137ff60bba243c6.png')">
+            <img src="1097_sin_titulo_20230205214211-4137ff60bba243c6.png" alt="1097_sin_titulo_20230205214211-4137ff60bba243c6.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1149_sin_titulo_20230212210741-96375bd7678a2dcb.png')">
+            <img src="1149_sin_titulo_20230212210741-96375bd7678a2dcb.png" alt="1149_sin_titulo_20230212210741-96375bd7678a2dcb.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1200px-Music-natural.svg-501526dba565590f.png')">
+            <img src="1200px-Music-natural.svg-501526dba565590f.png" alt="1200px-Music-natural.svg-501526dba565590f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '125_sin_titulo6_20240218195911-1df0a38b3979fd53.png')">
+            <img src="125_sin_titulo6_20240218195911-1df0a38b3979fd53.png" alt="125_sin_titulo6_20240218195911-1df0a38b3979fd53.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1301_sin_titulo_20230317195920-b17e8dbd0cc9bbb5.png')">
+            <img src="1301_sin_titulo_20230317195920-b17e8dbd0cc9bbb5.png" alt="1301_sin_titulo_20230317195920-b17e8dbd0cc9bbb5.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1301_sin_titulo_20230317195947-8abdb7b1fb1349cd.png')">
+            <img src="1301_sin_titulo_20230317195947-8abdb7b1fb1349cd.png" alt="1301_sin_titulo_20230317195947-8abdb7b1fb1349cd.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1301_sin_titulo_20230317202356-6ae435e2e7539b7f.png')">
+            <img src="1301_sin_titulo_20230317202356-6ae435e2e7539b7f.png" alt="1301_sin_titulo_20230317202356-6ae435e2e7539b7f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1301_sin_titulo_20230317203226-49d7583745bf4476.png')">
+            <img src="1301_sin_titulo_20230317203226-49d7583745bf4476.png" alt="1301_sin_titulo_20230317203226-49d7583745bf4476.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1301_sin_titulo_20230317203545-afd83abf3afa466a.png')">
+            <img src="1301_sin_titulo_20230317203545-afd83abf3afa466a.png" alt="1301_sin_titulo_20230317203545-afd83abf3afa466a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1301_sin_titulo_20230317204158-21a40e9aa3bf6cad.png')">
+            <img src="1301_sin_titulo_20230317204158-21a40e9aa3bf6cad.png" alt="1301_sin_titulo_20230317204158-21a40e9aa3bf6cad.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1301_sin_titulo_20230317204158-6563678dc19d413c.png')">
+            <img src="1301_sin_titulo_20230317204158-6563678dc19d413c.png" alt="1301_sin_titulo_20230317204158-6563678dc19d413c.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1340_sin_titulo_20230326201612-52c54382164960cc.png')">
+            <img src="1340_sin_titulo_20230326201612-52c54382164960cc.png" alt="1340_sin_titulo_20230326201612-52c54382164960cc.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1340_sin_titulo_20230326201612-76b9db28c6f4d06b.png')">
+            <img src="1340_sin_titulo_20230326201612-76b9db28c6f4d06b.png" alt="1340_sin_titulo_20230326201612-76b9db28c6f4d06b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1341_sin_titulo_20230326204120-884375e8d79e116f.png')">
+            <img src="1341_sin_titulo_20230326204120-884375e8d79e116f.png" alt="1341_sin_titulo_20230326204120-884375e8d79e116f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1341_sin_titulo_20230326204302-014e09e24f2a9f86.png')">
+            <img src="1341_sin_titulo_20230326204302-014e09e24f2a9f86.png" alt="1341_sin_titulo_20230326204302-014e09e24f2a9f86.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1341_sin_titulo_20230326204302-29d6d0a9717ce2f8.png')">
+            <img src="1341_sin_titulo_20230326204302-29d6d0a9717ce2f8.png" alt="1341_sin_titulo_20230326204302-29d6d0a9717ce2f8.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1342_sin_titulo_20230326204531-4c2083c82aa71153.png')">
+            <img src="1342_sin_titulo_20230326204531-4c2083c82aa71153.png" alt="1342_sin_titulo_20230326204531-4c2083c82aa71153.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1343_sin_titulo_20230326222624-4b5d5be0c0f6e32b.png')">
+            <img src="1343_sin_titulo_20230326222624-4b5d5be0c0f6e32b.png" alt="1343_sin_titulo_20230326222624-4b5d5be0c0f6e32b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1344_sin_titulo_20230326223842-7db0d848023fa77d.png')">
+            <img src="1344_sin_titulo_20230326223842-7db0d848023fa77d.png" alt="1344_sin_titulo_20230326223842-7db0d848023fa77d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1344_sin_titulo_20230326223842-88b8b1ca3624d6f7.png')">
+            <img src="1344_sin_titulo_20230326223842-88b8b1ca3624d6f7.png" alt="1344_sin_titulo_20230326223842-88b8b1ca3624d6f7.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '141_sin_titulo_20240218192636-19cc5350caad057a.png')">
+            <img src="141_sin_titulo_20240218192636-19cc5350caad057a.png" alt="141_sin_titulo_20240218192636-19cc5350caad057a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1496_sin_titulo_20230505161152-2db9cef96b1f8520.png')">
+            <img src="1496_sin_titulo_20230505161152-2db9cef96b1f8520.png" alt="1496_sin_titulo_20230505161152-2db9cef96b1f8520.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1496_sin_titulo_20230505162238-8d004ff7e47c6710.png')">
+            <img src="1496_sin_titulo_20230505162238-8d004ff7e47c6710.png" alt="1496_sin_titulo_20230505162238-8d004ff7e47c6710.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1496_sin_titulo_20230505162321-da6161316a6d0b33.png')">
+            <img src="1496_sin_titulo_20230505162321-da6161316a6d0b33.png" alt="1496_sin_titulo_20230505162321-da6161316a6d0b33.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1496_sin_titulo_20230505162324-cb96d0b0158f21af.png')">
+            <img src="1496_sin_titulo_20230505162324-cb96d0b0158f21af.png" alt="1496_sin_titulo_20230505162324-cb96d0b0158f21af.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1496_sin_titulo_20230505164717-a508a9b98ee42172.png')">
+            <img src="1496_sin_titulo_20230505164717-a508a9b98ee42172.png" alt="1496_sin_titulo_20230505164717-a508a9b98ee42172.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1496_sin_titulo_20230505164719-78ee8ee105c7cfa3.png')">
+            <img src="1496_sin_titulo_20230505164719-78ee8ee105c7cfa3.png" alt="1496_sin_titulo_20230505164719-78ee8ee105c7cfa3.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1496_sin_titulo_20230505164719-799fe5a01a960089.png')">
+            <img src="1496_sin_titulo_20230505164719-799fe5a01a960089.png" alt="1496_sin_titulo_20230505164719-799fe5a01a960089.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1497_sin_titulo-129812addb7ae086.png')">
+            <img src="1497_sin_titulo-129812addb7ae086.png" alt="1497_sin_titulo-129812addb7ae086.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1497_sin_titulo_20230505174038-15f0e77a981d1f8b.png')">
+            <img src="1497_sin_titulo_20230505174038-15f0e77a981d1f8b.png" alt="1497_sin_titulo_20230505174038-15f0e77a981d1f8b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1498_sin_titulo_20230505235452-4feb2d6718d8360b.png')">
+            <img src="1498_sin_titulo_20230505235452-4feb2d6718d8360b.png" alt="1498_sin_titulo_20230505235452-4feb2d6718d8360b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1578_sin_titulo_20230521152915-0674774738a8fb3d.png')">
+            <img src="1578_sin_titulo_20230521152915-0674774738a8fb3d.png" alt="1578_sin_titulo_20230521152915-0674774738a8fb3d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1593_sin_titulo-bc4d409e350fcaa8.png')">
+            <img src="1593_sin_titulo-bc4d409e350fcaa8.png" alt="1593_sin_titulo-bc4d409e350fcaa8.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1615_sin_titulo_20230603201044-a0009addfbbcd929.png')">
+            <img src="1615_sin_titulo_20230603201044-a0009addfbbcd929.png" alt="1615_sin_titulo_20230603201044-a0009addfbbcd929.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1615_sin_titulo_20230603201044-b725bddbd521553f.png')">
+            <img src="1615_sin_titulo_20230603201044-b725bddbd521553f.png" alt="1615_sin_titulo_20230603201044-b725bddbd521553f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1616_sin_titulo_20230603200856-7d5515aa1b814ecf.png')">
+            <img src="1616_sin_titulo_20230603200856-7d5515aa1b814ecf.png" alt="1616_sin_titulo_20230603200856-7d5515aa1b814ecf.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1616_sin_titulo_20230603200856-b0b20b6d0202e8b5.png')">
+            <img src="1616_sin_titulo_20230603200856-b0b20b6d0202e8b5.png" alt="1616_sin_titulo_20230603200856-b0b20b6d0202e8b5.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1617_sin_titulo_20230603201513-4f174e0a1ec9f714.png')">
+            <img src="1617_sin_titulo_20230603201513-4f174e0a1ec9f714.png" alt="1617_sin_titulo_20230603201513-4f174e0a1ec9f714.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1617_sin_titulo_20230603201513-7518a88873654794.png')">
+            <img src="1617_sin_titulo_20230603201513-7518a88873654794.png" alt="1617_sin_titulo_20230603201513-7518a88873654794.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1618_sin_titulo_20230603202312-6588bca599331623.png')">
+            <img src="1618_sin_titulo_20230603202312-6588bca599331623.png" alt="1618_sin_titulo_20230603202312-6588bca599331623.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1618_sin_titulo_20230603202312-86156196d2e77857.png')">
+            <img src="1618_sin_titulo_20230603202312-86156196d2e77857.png" alt="1618_sin_titulo_20230603202312-86156196d2e77857.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1619_sin_titulo_20230603204152-0c5279e09670c45e.png')">
+            <img src="1619_sin_titulo_20230603204152-0c5279e09670c45e.png" alt="1619_sin_titulo_20230603204152-0c5279e09670c45e.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1619_sin_titulo_20230603204152-9efa4c6e9fc884e5.png')">
+            <img src="1619_sin_titulo_20230603204152-9efa4c6e9fc884e5.png" alt="1619_sin_titulo_20230603204152-9efa4c6e9fc884e5.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1620_sin_titulo_20230603205814-a5337ba3efc31a82.png')">
+            <img src="1620_sin_titulo_20230603205814-a5337ba3efc31a82.png" alt="1620_sin_titulo_20230603205814-a5337ba3efc31a82.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1620_sin_titulo_20230603205814-facb9865f8737342.png')">
+            <img src="1620_sin_titulo_20230603205814-facb9865f8737342.png" alt="1620_sin_titulo_20230603205814-facb9865f8737342.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1621344367888-2e2c94eac3c0b58b.png')">
+            <img src="1621344367888-2e2c94eac3c0b58b.png" alt="1621344367888-2e2c94eac3c0b58b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1709_sin_titulo_20230618000813-a7426f7b7bc7d808.png')">
+            <img src="1709_sin_titulo_20230618000813-a7426f7b7bc7d808.png" alt="1709_sin_titulo_20230618000813-a7426f7b7bc7d808.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1714_sin_titulo_20230618201836-33f34dc335331bd9.png')">
+            <img src="1714_sin_titulo_20230618201836-33f34dc335331bd9.png" alt="1714_sin_titulo_20230618201836-33f34dc335331bd9.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1714_sin_titulo_20230618201836-c004c3734e142b7b.png')">
+            <img src="1714_sin_titulo_20230618201836-c004c3734e142b7b.png" alt="1714_sin_titulo_20230618201836-c004c3734e142b7b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1715_sin_titulo_20230618202740-df0e14bcba733e9b.png')">
+            <img src="1715_sin_titulo_20230618202740-df0e14bcba733e9b.png" alt="1715_sin_titulo_20230618202740-df0e14bcba733e9b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1715_sin_titulo_20230618202740-fb86722d71b2135e.png')">
+            <img src="1715_sin_titulo_20230618202740-fb86722d71b2135e.png" alt="1715_sin_titulo_20230618202740-fb86722d71b2135e.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1716_sin_titulo_20230618203616-17fa9d2046ce42a3.png')">
+            <img src="1716_sin_titulo_20230618203616-17fa9d2046ce42a3.png" alt="1716_sin_titulo_20230618203616-17fa9d2046ce42a3.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1716_sin_titulo_20230618203616-c2fb9477ea0413cb.png')">
+            <img src="1716_sin_titulo_20230618203616-c2fb9477ea0413cb.png" alt="1716_sin_titulo_20230618203616-c2fb9477ea0413cb.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1717_sin_titulo-0f89fd9fe2322fda.png')">
+            <img src="1717_sin_titulo-0f89fd9fe2322fda.png" alt="1717_sin_titulo-0f89fd9fe2322fda.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1718_sin_titulo_20230618205424-3fca6f3e888a6b61.png')">
+            <img src="1718_sin_titulo_20230618205424-3fca6f3e888a6b61.png" alt="1718_sin_titulo_20230618205424-3fca6f3e888a6b61.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1718_sin_titulo_20230618205424-cb7e29e2f1ff066e.png')">
+            <img src="1718_sin_titulo_20230618205424-cb7e29e2f1ff066e.png" alt="1718_sin_titulo_20230618205424-cb7e29e2f1ff066e.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1719_sin_titulo-65b5e2a36172bb42.png')">
+            <img src="1719_sin_titulo-65b5e2a36172bb42.png" alt="1719_sin_titulo-65b5e2a36172bb42.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1719_sin_titulo-95d7ec48b44d7cfd.png')">
+            <img src="1719_sin_titulo-95d7ec48b44d7cfd.png" alt="1719_sin_titulo-95d7ec48b44d7cfd.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1719_sin_titulo-f02b80390c16a257.png')">
+            <img src="1719_sin_titulo-f02b80390c16a257.png" alt="1719_sin_titulo-f02b80390c16a257.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1720_sin_titulo_20230618211500-cc9c028ea7418134.png')">
+            <img src="1720_sin_titulo_20230618211500-cc9c028ea7418134.png" alt="1720_sin_titulo_20230618211500-cc9c028ea7418134.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1720_sin_titulo_20230618211500-ea9934ff9ba64f3b.png')">
+            <img src="1720_sin_titulo_20230618211500-ea9934ff9ba64f3b.png" alt="1720_sin_titulo_20230618211500-ea9934ff9ba64f3b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1721_sin_titulo_20230618211919-20c3b84aa6ec2cef.png')">
+            <img src="1721_sin_titulo_20230618211919-20c3b84aa6ec2cef.png" alt="1721_sin_titulo_20230618211919-20c3b84aa6ec2cef.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1721_sin_titulo_20230618211919-ab831a86561f3460.png')">
+            <img src="1721_sin_titulo_20230618211919-ab831a86561f3460.png" alt="1721_sin_titulo_20230618211919-ab831a86561f3460.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1885_sin_titulo_20230729161443-75673047997e2d7b.png')">
+            <img src="1885_sin_titulo_20230729161443-75673047997e2d7b.png" alt="1885_sin_titulo_20230729161443-75673047997e2d7b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1885_sin_titulo_20230729162040-f31503db806f1ffb.png')">
+            <img src="1885_sin_titulo_20230729162040-f31503db806f1ffb.png" alt="1885_sin_titulo_20230729162040-f31503db806f1ffb.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1885_sin_titulo_20230729162311-ea2551cd018d4a5c.png')">
+            <img src="1885_sin_titulo_20230729162311-ea2551cd018d4a5c.png" alt="1885_sin_titulo_20230729162311-ea2551cd018d4a5c.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1885_sin_titulo_20230729162549-fe7447d6d5a6197b.png')">
+            <img src="1885_sin_titulo_20230729162549-fe7447d6d5a6197b.png" alt="1885_sin_titulo_20230729162549-fe7447d6d5a6197b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1885_sin_titulo_20230729162630-0ab75eadb6726510.png')">
+            <img src="1885_sin_titulo_20230729162630-0ab75eadb6726510.png" alt="1885_sin_titulo_20230729162630-0ab75eadb6726510.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1885_sin_titulo_20230729162637-8036a32895db9936.png')">
+            <img src="1885_sin_titulo_20230729162637-8036a32895db9936.png" alt="1885_sin_titulo_20230729162637-8036a32895db9936.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f383-ceacabdaf9c4b0c7.svg')">
+            <img src="1f383-ceacabdaf9c4b0c7.svg" alt="1f383-ceacabdaf9c4b0c7.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f41b-c66cd95da19cddd3.svg')">
+            <img src="1f41b-c66cd95da19cddd3.svg" alt="1f41b-c66cd95da19cddd3.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f438-dec2ea099e2f429b.svg')">
+            <img src="1f438-dec2ea099e2f429b.svg" alt="1f438-dec2ea099e2f429b.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f44d-27259a90ef10d877.svg')">
+            <img src="1f44d-27259a90ef10d877.svg" alt="1f44d-27259a90ef10d877.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f455-60d0e3161ad58806.svg')">
+            <img src="1f455-60d0e3161ad58806.svg" alt="1f455-60d0e3161ad58806.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f480-9452420c285fa8dc.svg')">
+            <img src="1f480-9452420c285fa8dc.svg" alt="1f480-9452420c285fa8dc.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f601-4e9bd27e7b4b180e.svg')">
+            <img src="1f601-4e9bd27e7b4b180e.svg" alt="1f601-4e9bd27e7b4b180e.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f62d-026038383fb5f0ba.svg')">
+            <img src="1f62d-026038383fb5f0ba.svg" alt="1f62d-026038383fb5f0ba.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f631-75e8dcfaff67e81d.svg')">
+            <img src="1f631-75e8dcfaff67e81d.svg" alt="1f631-75e8dcfaff67e81d.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f914-1570789a20b7c76d.svg')">
+            <img src="1f914-1570789a20b7c76d.svg" alt="1f914-1570789a20b7c76d.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '1f938-200d-2642-fe0f-7ae7dc61fbc67218.svg')">
+            <img src="1f938-200d-2642-fe0f-7ae7dc61fbc67218.svg" alt="1f938-200d-2642-fe0f-7ae7dc61fbc67218.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '20230129_235633-6a8675c691d9d024.jpg')">
+            <img src="20230129_235633-6a8675c691d9d024.jpg" alt="20230129_235633-6a8675c691d9d024.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '20230130_002745-6d0c151fa6911bdf.jpg')">
+            <img src="20230130_002745-6d0c151fa6911bdf.jpg" alt="20230130_002745-6d0c151fa6911bdf.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '22562207-a-book-with-calligraphic-page-dec-1016ac7d37617606.png')">
+            <img src="22562207-a-book-with-calligraphic-page-dec-1016ac7d37617606.png" alt="22562207-a-book-with-calligraphic-page-dec-1016ac7d37617606.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '250px-Breve_notation-a285876e2f98cfcb.png')">
+            <img src="250px-Breve_notation-a285876e2f98cfcb.png" alt="250px-Breve_notation-a285876e2f98cfcb.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '260e-f548dfa83aa398b6.svg')">
+            <img src="260e-f548dfa83aa398b6.svg" alt="260e-f548dfa83aa398b6.svg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '27d_1-d98b371a68e99513.jpg')">
+            <img src="27d_1-d98b371a68e99513.jpg" alt="27d_1-d98b371a68e99513.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '3-fb0335e5edad7b09.png')">
+            <img src="3-fb0335e5edad7b09.png" alt="3-fb0335e5edad7b09.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '450_1000-53da089b11b9f8a3.jpg')">
+            <img src="450_1000-53da089b11b9f8a3.jpg" alt="450_1000-53da089b11b9f8a3.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '4abeb5ddbe957052753874aeee1f3462-c2a2e27e46862ee4.png')">
+            <img src="4abeb5ddbe957052753874aeee1f3462-c2a2e27e46862ee4.png" alt="4abeb5ddbe957052753874aeee1f3462-c2a2e27e46862ee4.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '4d9b590efe8f77b68e7d7380cd50580648c1208e_4-5aba173ff62bfc4c.jpg')">
+            <img src="4d9b590efe8f77b68e7d7380cd50580648c1208e_4-5aba173ff62bfc4c.jpg" alt="4d9b590efe8f77b68e7d7380cd50580648c1208e_4-5aba173ff62bfc4c.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '61maQTDZloL-a65b052d6e37e7bc.png')">
+            <img src="61maQTDZloL-a65b052d6e37e7bc.png" alt="61maQTDZloL-a65b052d6e37e7bc.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '73dbaa57d49f049676330f93ef449504-c1b91f3e2c6b5a25.png')">
+            <img src="73dbaa57d49f049676330f93ef449504-c1b91f3e2c6b5a25.png" alt="73dbaa57d49f049676330f93ef449504-c1b91f3e2c6b5a25.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '7c7a94a93926de9765bc246ffdd9f937--paleo-fl-31ce238bb095eaad.jpg')">
+            <img src="7c7a94a93926de9765bc246ffdd9f937--paleo-fl-31ce238bb095eaad.jpg" alt="7c7a94a93926de9765bc246ffdd9f937--paleo-fl-31ce238bb095eaad.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '7VACSXA4TRFZJD77RHXXSS66PY-e28ff796991b6585.png')">
+            <img src="7VACSXA4TRFZJD77RHXXSS66PY-e28ff796991b6585.png" alt="7VACSXA4TRFZJD77RHXXSS66PY-e28ff796991b6585.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '800px-Paldea-9a72387794651fdc.jpg')">
+            <img src="800px-Paldea-9a72387794651fdc.jpg" alt="800px-Paldea-9a72387794651fdc.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '820801805012959282-8f679269048388a7.png')">
+            <img src="820801805012959282-8f679269048388a7.png" alt="820801805012959282-8f679269048388a7.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '8e9fbd9615668e8392776a017b672dc9-8524378e821e62e0.png')">
+            <img src="8e9fbd9615668e8392776a017b672dc9-8524378e821e62e0.png" alt="8e9fbd9615668e8392776a017b672dc9-8524378e821e62e0.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '912041530808746004-ba62ce4a09f5b284.png')">
+            <img src="912041530808746004-ba62ce4a09f5b284.png" alt="912041530808746004-ba62ce4a09f5b284.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', '948ef5d52d7e4bd52aebfd807c8d64e3-91111792a3074fb0.jpg')">
+            <img src="948ef5d52d7e4bd52aebfd807c8d64e3-91111792a3074fb0.jpg" alt="948ef5d52d7e4bd52aebfd807c8d64e3-91111792a3074fb0.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'adb1949c2aeffd0434b54fc06f7fd265-318599782dd5daa7.png')">
+            <img src="adb1949c2aeffd0434b54fc06f7fd265-318599782dd5daa7.png" alt="adb1949c2aeffd0434b54fc06f7fd265-318599782dd5daa7.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'apple-touch-icon-192x192-e344c71a066fdf3f.png')">
+            <img src="apple-touch-icon-192x192-e344c71a066fdf3f.png" alt="apple-touch-icon-192x192-e344c71a066fdf3f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'backonchantu-0ab2dc4cf3695486.png')">
+            <img src="backonchantu-0ab2dc4cf3695486.png" alt="backonchantu-0ab2dc4cf3695486.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'bell-curve-0e04af0370f29f79.png')">
+            <img src="bell-curve-0e04af0370f29f79.png" alt="bell-curve-0e04af0370f29f79.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Bounding_Demon-f5bd4f0e50a5dd7b.png')">
+            <img src="Bounding_Demon-f5bd4f0e50a5dd7b.png" alt="Bounding_Demon-f5bd4f0e50a5dd7b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'c3cdaa32c6487a7bcba1c50ecdf6230f-0408d0d4cdfe7e12.png')">
+            <img src="c3cdaa32c6487a7bcba1c50ecdf6230f-0408d0d4cdfe7e12.png" alt="c3cdaa32c6487a7bcba1c50ecdf6230f-0408d0d4cdfe7e12.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'core_idea_1-4a4f6635fa4ea03a.png')">
+            <img src="core_idea_1-4a4f6635fa4ea03a.png" alt="core_idea_1-4a4f6635fa4ea03a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'core_idea_2-673a559764b7e7f5.png')">
+            <img src="core_idea_2-673a559764b7e7f5.png" alt="core_idea_2-673a559764b7e7f5.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'crystalcave-696x339-57c3e964c33dbb64.png')">
+            <img src="crystalcave-696x339-57c3e964c33dbb64.png" alt="crystalcave-696x339-57c3e964c33dbb64.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'd64e50f89f5938c7923df9f1f39e514d-c4628298960a6939.jpg')">
+            <img src="d64e50f89f5938c7923df9f1f39e514d-c4628298960a6939.jpg" alt="d64e50f89f5938c7923df9f1f39e514d-c4628298960a6939.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'depositphotos_142464513-stock-illustration-131af8fc6169af63.png')">
+            <img src="depositphotos_142464513-stock-illustration-131af8fc6169af63.png" alt="depositphotos_142464513-stock-illustration-131af8fc6169af63.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'desierto-del-sahara-dunas-4e66dcc79c3ab62b.png')">
+            <img src="desierto-del-sahara-dunas-4e66dcc79c3ab62b.png" alt="desierto-del-sahara-dunas-4e66dcc79c3ab62b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'diseno-diferentes-tipos-cactus_23-21475481-4457eb25a013bc60.jpg')">
+            <img src="diseno-diferentes-tipos-cactus_23-21475481-4457eb25a013bc60.jpg" alt="diseno-diferentes-tipos-cactus_23-21475481-4457eb25a013bc60.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'divider-vintage-calligraphic-frames-decora-a880f98b760aff07.png')">
+            <img src="divider-vintage-calligraphic-frames-decora-a880f98b760aff07.png" alt="divider-vintage-calligraphic-frames-decora-a880f98b760aff07.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'e725d839b16c6188a73b9ce72ea85011-75f3d21f75921306.jpg')">
+            <img src="e725d839b16c6188a73b9ce72ea85011-75f3d21f75921306.jpg" alt="e725d839b16c6188a73b9ce72ea85011-75f3d21f75921306.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'ejemplos-plantas-selva-trop-c4dbc7a90dfecfd0.jpg')">
+            <img src="ejemplos-plantas-selva-trop-c4dbc7a90dfecfd0.jpg" alt="ejemplos-plantas-selva-trop-c4dbc7a90dfecfd0.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'ezgif-1-91b8d9b697-329b8b8020fd1ecc.gif')">
+            <img src="ezgif-1-91b8d9b697-329b8b8020fd1ecc.gif" alt="ezgif-1-91b8d9b697-329b8b8020fd1ecc.gif" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'ezgif-1-bd0bd2a3ea-491dfe083cb255b6.gif')">
+            <img src="ezgif-1-bd0bd2a3ea-491dfe083cb255b6.gif" alt="ezgif-1-bd0bd2a3ea-491dfe083cb255b6.gif" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'fb-cover-6a105d88c024286d.jpg')">
+            <img src="fb-cover-6a105d88c024286d.jpg" alt="fb-cover-6a105d88c024286d.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'fruto-del-cactus-92d8d96109fb9f5b.png')">
+            <img src="fruto-del-cactus-92d8d96109fb9f5b.png" alt="fruto-del-cactus-92d8d96109fb9f5b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'google-go-4579ec2f1249a8d9.png')">
+            <img src="google-go-4579ec2f1249a8d9.png" alt="google-go-4579ec2f1249a8d9.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Greenland-sydkap_hg-209076cf90c4175b.png')">
+            <img src="Greenland-sydkap_hg-209076cf90c4175b.png" alt="Greenland-sydkap_hg-209076cf90c4175b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'grietas-en-la-planta-baja-4a26109e3c96ffcd.png')">
+            <img src="grietas-en-la-planta-baja-4a26109e3c96ffcd.png" alt="grietas-en-la-planta-baja-4a26109e3c96ffcd.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Guia_Libros_RW_1_page-0001-0f89956f0fbd647d.jpg')">
+            <img src="Guia_Libros_RW_1_page-0001-0f89956f0fbd647d.jpg" alt="Guia_Libros_RW_1_page-0001-0f89956f0fbd647d.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Guia_Libros_RW_page-0001-9b37daca8a411997.jpg')">
+            <img src="Guia_Libros_RW_page-0001-9b37daca8a411997.jpg" alt="Guia_Libros_RW_page-0001-9b37daca8a411997.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'icono-de-la-nota-de-m%25C3%25BAsica-comple-8862b59d60080108.jpg')">
+            <img src="icono-de-la-nota-de-m%25C3%25BAsica-comple-8862b59d60080108.jpg" alt="icono-de-la-nota-de-m%25C3%25BAsica-comple-8862b59d60080108.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-0078faa2e9a0938d.png')">
+            <img src="image-0078faa2e9a0938d.png" alt="image-0078faa2e9a0938d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-03f7d2ebc0012f43.png')">
+            <img src="image-03f7d2ebc0012f43.png" alt="image-03f7d2ebc0012f43.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-068876f53e3b6050.png')">
+            <img src="image-068876f53e3b6050.png" alt="image-068876f53e3b6050.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-092eb1c6b272d7ce.png')">
+            <img src="image-092eb1c6b272d7ce.png" alt="image-092eb1c6b272d7ce.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-120e69ead419f0c0.png')">
+            <img src="image-120e69ead419f0c0.png" alt="image-120e69ead419f0c0.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-13-29a1b7f2b75857d3.png')">
+            <img src="image-13-29a1b7f2b75857d3.png" alt="image-13-29a1b7f2b75857d3.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-1679f49bf1aca3a4.png')">
+            <img src="image-1679f49bf1aca3a4.png" alt="image-1679f49bf1aca3a4.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-1a956c583158cd36.png')">
+            <img src="image-1a956c583158cd36.png" alt="image-1a956c583158cd36.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-1b142b1d1a7e9878.png')">
+            <img src="image-1b142b1d1a7e9878.png" alt="image-1b142b1d1a7e9878.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-1b201bf9018c346d.png')">
+            <img src="image-1b201bf9018c346d.png" alt="image-1b201bf9018c346d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-1dd10b1771b57433.png')">
+            <img src="image-1dd10b1771b57433.png" alt="image-1dd10b1771b57433.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-1ec286cf46536236.png')">
+            <img src="image-1ec286cf46536236.png" alt="image-1ec286cf46536236.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-202f27d1e7385766.png')">
+            <img src="image-202f27d1e7385766.png" alt="image-202f27d1e7385766.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-212473757a11a425.png')">
+            <img src="image-212473757a11a425.png" alt="image-212473757a11a425.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-2877a5cae3644ae8.png')">
+            <img src="image-2877a5cae3644ae8.png" alt="image-2877a5cae3644ae8.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-28c400e5799b2283.png')">
+            <img src="image-28c400e5799b2283.png" alt="image-28c400e5799b2283.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-29ab065afb278eff.png')">
+            <img src="image-29ab065afb278eff.png" alt="image-29ab065afb278eff.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-2cbe3b87f3c9a47d.png')">
+            <img src="image-2cbe3b87f3c9a47d.png" alt="image-2cbe3b87f3c9a47d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-2d06514483794dca.png')">
+            <img src="image-2d06514483794dca.png" alt="image-2d06514483794dca.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-354e2134c947a4b9.png')">
+            <img src="image-354e2134c947a4b9.png" alt="image-354e2134c947a4b9.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-3cc99518d36f6e3e.png')">
+            <img src="image-3cc99518d36f6e3e.png" alt="image-3cc99518d36f6e3e.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-3ce6dd21b3e18822.png')">
+            <img src="image-3ce6dd21b3e18822.png" alt="image-3ce6dd21b3e18822.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-4216369c95fd62d8.png')">
+            <img src="image-4216369c95fd62d8.png" alt="image-4216369c95fd62d8.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-433faa9d19900832.png')">
+            <img src="image-433faa9d19900832.png" alt="image-433faa9d19900832.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-4406f6d4b8d68d4a.png')">
+            <img src="image-4406f6d4b8d68d4a.png" alt="image-4406f6d4b8d68d4a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-448b3a5afe730754.png')">
+            <img src="image-448b3a5afe730754.png" alt="image-448b3a5afe730754.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-44a98748b91a2dcb.png')">
+            <img src="image-44a98748b91a2dcb.png" alt="image-44a98748b91a2dcb.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-455e14d5036a298e.png')">
+            <img src="image-455e14d5036a298e.png" alt="image-455e14d5036a298e.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-4617447389d1c60f.png')">
+            <img src="image-4617447389d1c60f.png" alt="image-4617447389d1c60f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-46cb95704f7e107d.png')">
+            <img src="image-46cb95704f7e107d.png" alt="image-46cb95704f7e107d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-48686f2af3c98159.png')">
+            <img src="image-48686f2af3c98159.png" alt="image-48686f2af3c98159.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-499493067dfeaaa4.png')">
+            <img src="image-499493067dfeaaa4.png" alt="image-499493067dfeaaa4.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-4c90a406c5f42871.png')">
+            <img src="image-4c90a406c5f42871.png" alt="image-4c90a406c5f42871.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-526177caebb6103b.png')">
+            <img src="image-526177caebb6103b.png" alt="image-526177caebb6103b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-59393474af1328f3.png')">
+            <img src="image-59393474af1328f3.png" alt="image-59393474af1328f3.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-59c0d6c7548a932d.png')">
+            <img src="image-59c0d6c7548a932d.png" alt="image-59c0d6c7548a932d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-5a4db30cadef0783.png')">
+            <img src="image-5a4db30cadef0783.png" alt="image-5a4db30cadef0783.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-5ac1ab6faad0ba3d.png')">
+            <img src="image-5ac1ab6faad0ba3d.png" alt="image-5ac1ab6faad0ba3d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-600d378d3a55040c.png')">
+            <img src="image-600d378d3a55040c.png" alt="image-600d378d3a55040c.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-63614eff9550680b.png')">
+            <img src="image-63614eff9550680b.png" alt="image-63614eff9550680b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-63ddaca9ff55ef4f.png')">
+            <img src="image-63ddaca9ff55ef4f.png" alt="image-63ddaca9ff55ef4f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-651ebef47e97c99b.png')">
+            <img src="image-651ebef47e97c99b.png" alt="image-651ebef47e97c99b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-671129978ceba844.png')">
+            <img src="image-671129978ceba844.png" alt="image-671129978ceba844.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-6715f302e68b9561.png')">
+            <img src="image-6715f302e68b9561.png" alt="image-6715f302e68b9561.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-713153698fbb1446.png')">
+            <img src="image-713153698fbb1446.png" alt="image-713153698fbb1446.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-737a03c9f677c4c1.png')">
+            <img src="image-737a03c9f677c4c1.png" alt="image-737a03c9f677c4c1.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-73c527f3a42ea82c.png')">
+            <img src="image-73c527f3a42ea82c.png" alt="image-73c527f3a42ea82c.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-73ff37ae546b3bf3.png')">
+            <img src="image-73ff37ae546b3bf3.png" alt="image-73ff37ae546b3bf3.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-77c8d53a2419fa7b.png')">
+            <img src="image-77c8d53a2419fa7b.png" alt="image-77c8d53a2419fa7b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-782895eae9418a5c.png')">
+            <img src="image-782895eae9418a5c.png" alt="image-782895eae9418a5c.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-7914ff58a24ce1ec.png')">
+            <img src="image-7914ff58a24ce1ec.png" alt="image-7914ff58a24ce1ec.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-7b422d47bce0be48.png')">
+            <img src="image-7b422d47bce0be48.png" alt="image-7b422d47bce0be48.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-7ce62020b6b197fe.png')">
+            <img src="image-7ce62020b6b197fe.png" alt="image-7ce62020b6b197fe.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-7dc7732150ba3b53.png')">
+            <img src="image-7dc7732150ba3b53.png" alt="image-7dc7732150ba3b53.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-7ebb5df9d7856dee.png')">
+            <img src="image-7ebb5df9d7856dee.png" alt="image-7ebb5df9d7856dee.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-7ebe56c2daa3bcb3.png')">
+            <img src="image-7ebe56c2daa3bcb3.png" alt="image-7ebe56c2daa3bcb3.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-81d5abb6a35d451f.png')">
+            <img src="image-81d5abb6a35d451f.png" alt="image-81d5abb6a35d451f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-86242ba5d9cc7aff.png')">
+            <img src="image-86242ba5d9cc7aff.png" alt="image-86242ba5d9cc7aff.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-8643b1f0b9d25c7f.png')">
+            <img src="image-8643b1f0b9d25c7f.png" alt="image-8643b1f0b9d25c7f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-88caa9271be8dd3b.png')">
+            <img src="image-88caa9271be8dd3b.png" alt="image-88caa9271be8dd3b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-88d4f3a741ddf529.png')">
+            <img src="image-88d4f3a741ddf529.png" alt="image-88d4f3a741ddf529.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-8b4717befff1b331.png')">
+            <img src="image-8b4717befff1b331.png" alt="image-8b4717befff1b331.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-8d53588ebfe7435d.png')">
+            <img src="image-8d53588ebfe7435d.png" alt="image-8d53588ebfe7435d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-8e1c1f922fa55641.png')">
+            <img src="image-8e1c1f922fa55641.png" alt="image-8e1c1f922fa55641.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-8ff9935705a774c1.png')">
+            <img src="image-8ff9935705a774c1.png" alt="image-8ff9935705a774c1.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-91397274fea1f920.png')">
+            <img src="image-91397274fea1f920.png" alt="image-91397274fea1f920.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-917bed4ece666420.png')">
+            <img src="image-917bed4ece666420.png" alt="image-917bed4ece666420.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-94332f4f6af11c76.png')">
+            <img src="image-94332f4f6af11c76.png" alt="image-94332f4f6af11c76.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-9708bb81ff91258e.png')">
+            <img src="image-9708bb81ff91258e.png" alt="image-9708bb81ff91258e.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-996100887c0c0d9d.png')">
+            <img src="image-996100887c0c0d9d.png" alt="image-996100887c0c0d9d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-9e06b058a43051fb.png')">
+            <img src="image-9e06b058a43051fb.png" alt="image-9e06b058a43051fb.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-a2ad531aa375a74e.png')">
+            <img src="image-a2ad531aa375a74e.png" alt="image-a2ad531aa375a74e.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-a2e64cddfc6f49d2.png')">
+            <img src="image-a2e64cddfc6f49d2.png" alt="image-a2e64cddfc6f49d2.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-a9ca08d76a94b042.png')">
+            <img src="image-a9ca08d76a94b042.png" alt="image-a9ca08d76a94b042.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-ac9a86dbfb027dc2.png')">
+            <img src="image-ac9a86dbfb027dc2.png" alt="image-ac9a86dbfb027dc2.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-adf92095cb50b82b.png')">
+            <img src="image-adf92095cb50b82b.png" alt="image-adf92095cb50b82b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-ae19447ce7edc1cd.png')">
+            <img src="image-ae19447ce7edc1cd.png" alt="image-ae19447ce7edc1cd.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-af767189732af2ad.png')">
+            <img src="image-af767189732af2ad.png" alt="image-af767189732af2ad.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-afdd174cc1ef92b0.png')">
+            <img src="image-afdd174cc1ef92b0.png" alt="image-afdd174cc1ef92b0.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-afe3a97cd695751a.png')">
+            <img src="image-afe3a97cd695751a.png" alt="image-afe3a97cd695751a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-b060d66f06a3fa1a.png')">
+            <img src="image-b060d66f06a3fa1a.png" alt="image-b060d66f06a3fa1a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-b2d7b118bdd15c94.png')">
+            <img src="image-b2d7b118bdd15c94.png" alt="image-b2d7b118bdd15c94.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-b48d41bea779a546.png')">
+            <img src="image-b48d41bea779a546.png" alt="image-b48d41bea779a546.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-b7960271db477fb8.png')">
+            <img src="image-b7960271db477fb8.png" alt="image-b7960271db477fb8.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-bc7ac3967729ac4f.png')">
+            <img src="image-bc7ac3967729ac4f.png" alt="image-bc7ac3967729ac4f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-be80ea8f2b9aa5a3.png')">
+            <img src="image-be80ea8f2b9aa5a3.png" alt="image-be80ea8f2b9aa5a3.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-c2332972a3b860c1.png')">
+            <img src="image-c2332972a3b860c1.png" alt="image-c2332972a3b860c1.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-c238a402ab08902f.png')">
+            <img src="image-c238a402ab08902f.png" alt="image-c238a402ab08902f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-c4d95face40d71b7.png')">
+            <img src="image-c4d95face40d71b7.png" alt="image-c4d95face40d71b7.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-c4f81e2a1846b994.png')">
+            <img src="image-c4f81e2a1846b994.png" alt="image-c4f81e2a1846b994.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-c9df22066d990118.png')">
+            <img src="image-c9df22066d990118.png" alt="image-c9df22066d990118.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-ca733e6786175f69.png')">
+            <img src="image-ca733e6786175f69.png" alt="image-ca733e6786175f69.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-cbc494419863347f.png')">
+            <img src="image-cbc494419863347f.png" alt="image-cbc494419863347f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-cbdf35def9063663.png')">
+            <img src="image-cbdf35def9063663.png" alt="image-cbdf35def9063663.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-cf0f7599532e393b.png')">
+            <img src="image-cf0f7599532e393b.png" alt="image-cf0f7599532e393b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-d00027e2df3c7388.png')">
+            <img src="image-d00027e2df3c7388.png" alt="image-d00027e2df3c7388.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-d0bd38214861b651.png')">
+            <img src="image-d0bd38214861b651.png" alt="image-d0bd38214861b651.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-d5d33ffb0568cc9b.png')">
+            <img src="image-d5d33ffb0568cc9b.png" alt="image-d5d33ffb0568cc9b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-d63de9e1dfcde1b5.png')">
+            <img src="image-d63de9e1dfcde1b5.png" alt="image-d63de9e1dfcde1b5.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-d6f9cd56e0f6609c.png')">
+            <img src="image-d6f9cd56e0f6609c.png" alt="image-d6f9cd56e0f6609c.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-d8798a6060c309b4.png')">
+            <img src="image-d8798a6060c309b4.png" alt="image-d8798a6060c309b4.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-d8f983159d9c1f6a.png')">
+            <img src="image-d8f983159d9c1f6a.png" alt="image-d8f983159d9c1f6a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-de8f76b84b50c76d.png')">
+            <img src="image-de8f76b84b50c76d.png" alt="image-de8f76b84b50c76d.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-e29b92a72128cf51.png')">
+            <img src="image-e29b92a72128cf51.png" alt="image-e29b92a72128cf51.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-e3041c6c8ac8edae.png')">
+            <img src="image-e3041c6c8ac8edae.png" alt="image-e3041c6c8ac8edae.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-ecc178d14d198813.png')">
+            <img src="image-ecc178d14d198813.png" alt="image-ecc178d14d198813.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-ef501b7493269dd8.png')">
+            <img src="image-ef501b7493269dd8.png" alt="image-ef501b7493269dd8.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-f0a972beee819d23.png')">
+            <img src="image-f0a972beee819d23.png" alt="image-f0a972beee819d23.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-f166089ef9213b8b.png')">
+            <img src="image-f166089ef9213b8b.png" alt="image-f166089ef9213b8b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-f18bc7b0316df3bd.png')">
+            <img src="image-f18bc7b0316df3bd.png" alt="image-f18bc7b0316df3bd.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-f35505d35f6534db.png')">
+            <img src="image-f35505d35f6534db.png" alt="image-f35505d35f6534db.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-f8dbb356ec4394e6.png')">
+            <img src="image-f8dbb356ec4394e6.png" alt="image-f8dbb356ec4394e6.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-fd7d9e404b53166e.png')">
+            <img src="image-fd7d9e404b53166e.png" alt="image-fd7d9e404b53166e.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image-fe94c55a80e4b41a.png')">
+            <img src="image-fe94c55a80e4b41a.png" alt="image-fe94c55a80e4b41a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image0-c6137be0b9bacfdc.jpg')">
+            <img src="image0-c6137be0b9bacfdc.jpg" alt="image0-c6137be0b9bacfdc.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'image0-e869c6a402fdb962.jpg')">
+            <img src="image0-e869c6a402fdb962.jpg" alt="image0-e869c6a402fdb962.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'IMG_20230205_200255_394-333fdd85234138be.jpg')">
+            <img src="IMG_20230205_200255_394-333fdd85234138be.jpg" alt="IMG_20230205_200255_394-333fdd85234138be.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'IMG_20230205_200523_035-8a768f01901d9801.jpg')">
+            <img src="IMG_20230205_200523_035-8a768f01901d9801.jpg" alt="IMG_20230205_200523_035-8a768f01901d9801.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'IMG_7129-e1664305611909-9a30e7a1b0836500.png')">
+            <img src="IMG_7129-e1664305611909-9a30e7a1b0836500.png" alt="IMG_7129-e1664305611909-9a30e7a1b0836500.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'infinity_train_family_tree_car_by_mdwyer5_-d2f6c04c451a9a57.png')">
+            <img src="infinity_train_family_tree_car_by_mdwyer5_-d2f6c04c451a9a57.png" alt="infinity_train_family_tree_car_by_mdwyer5_-d2f6c04c451a9a57.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'j8smpgpY_400x400-9e1b0a0931dfb670.jpg')">
+            <img src="j8smpgpY_400x400-9e1b0a0931dfb670.jpg" alt="j8smpgpY_400x400-9e1b0a0931dfb670.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Kronotsky_volcano-d1b7eb9df853e04c.png')">
+            <img src="Kronotsky_volcano-d1b7eb9df853e04c.png" alt="Kronotsky_volcano-d1b7eb9df853e04c.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'la-impresionante-ciudad-tallada-en-piedra--9e04785e65a09c15.png')">
+            <img src="la-impresionante-ciudad-tallada-en-piedra--9e04785e65a09c15.png" alt="la-impresionante-ciudad-tallada-en-piedra--9e04785e65a09c15.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'la-impresionante-ciudad-tallada-en-piedra--f916c458cf72f2a2.png')">
+            <img src="la-impresionante-ciudad-tallada-en-piedra--f916c458cf72f2a2.png" alt="la-impresionante-ciudad-tallada-en-piedra--f916c458cf72f2a2.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'latest-022e0fa590f503e2.png')">
+            <img src="latest-022e0fa590f503e2.png" alt="latest-022e0fa590f503e2.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'lizard-creature-frozen-431c8b3beb315612.jpg')">
+            <img src="lizard-creature-frozen-431c8b3beb315612.jpg" alt="lizard-creature-frozen-431c8b3beb315612.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Mangosta-rayada-Selwo-Aventura-2-8f94b087fb7b60fc.png')">
+            <img src="Mangosta-rayada-Selwo-Aventura-2-8f94b087fb7b60fc.png" alt="Mangosta-rayada-Selwo-Aventura-2-8f94b087fb7b60fc.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'morsa-iceberg-1024x683-ae86bbe6d2c406f4.png')">
+            <img src="morsa-iceberg-1024x683-ae86bbe6d2c406f4.png" alt="morsa-iceberg-1024x683-ae86bbe6d2c406f4.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'natural-tar-water-asphalt-pit-in-swamp-wet-889620cc5e8df0b1.png')">
+            <img src="natural-tar-water-asphalt-pit-in-swamp-wet-889620cc5e8df0b1.png" alt="natural-tar-water-asphalt-pit-in-swamp-wet-889620cc5e8df0b1.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'P0rV4bb-c83ec668240e49d6.png')">
+            <img src="P0rV4bb-c83ec668240e49d6.png" alt="P0rV4bb-c83ec668240e49d6.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'pantalla-8b1e15ac7da23b3e.gif')">
+            <img src="pantalla-8b1e15ac7da23b3e.gif" alt="pantalla-8b1e15ac7da23b3e.gif" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Peat_bog_1280x720-3765882f826b5a83.png')">
+            <img src="Peat_bog_1280x720-3765882f826b5a83.png" alt="Peat_bog_1280x720-3765882f826b5a83.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'quetzal-ave-preciosa1-ab65c589c78d2532.jpg')">
+            <img src="quetzal-ave-preciosa1-ab65c589c78d2532.jpg" alt="quetzal-ave-preciosa1-ab65c589c78d2532.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'recursos_trabajos-d9387561aae47362.png')">
+            <img src="recursos_trabajos-d9387561aae47362.png" alt="recursos_trabajos-d9387561aae47362.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'rnvr4jbi4yma1-7cf6b6321b12664b.png')">
+            <img src="rnvr4jbi4yma1-7cf6b6321b12664b.png" alt="rnvr4jbi4yma1-7cf6b6321b12664b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'rw-7b5f20b0a4ca2e72.gif')">
+            <img src="rw-7b5f20b0a4ca2e72.gif" alt="rw-7b5f20b0a4ca2e72.gif" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230122-200502-7cb7fea62354de15.png')">
+            <img src="Screenshot_20230122-200502-7cb7fea62354de15.png" alt="Screenshot_20230122-200502-7cb7fea62354de15.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230125-175213-b92dd2e28c9177b4.png')">
+            <img src="Screenshot_20230125-175213-b92dd2e28c9177b4.png" alt="Screenshot_20230125-175213-b92dd2e28c9177b4.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230308-183115-9bd1863bbe6f8f35.png')">
+            <img src="Screenshot_20230308-183115-9bd1863bbe6f8f35.png" alt="Screenshot_20230308-183115-9bd1863bbe6f8f35.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230317-200228-4dd0ceb4cb47a8d9.png')">
+            <img src="Screenshot_20230317-200228-4dd0ceb4cb47a8d9.png" alt="Screenshot_20230317-200228-4dd0ceb4cb47a8d9.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230317-200943-3b9b51d740e10d87.png')">
+            <img src="Screenshot_20230317-200943-3b9b51d740e10d87.png" alt="Screenshot_20230317-200943-3b9b51d740e10d87.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230317-201010-1d970732a2906adc.png')">
+            <img src="Screenshot_20230317-201010-1d970732a2906adc.png" alt="Screenshot_20230317-201010-1d970732a2906adc.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230317-201232-cdb642f23dfd399a.png')">
+            <img src="Screenshot_20230317-201232-cdb642f23dfd399a.png" alt="Screenshot_20230317-201232-cdb642f23dfd399a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230317-201755-02ae56d727d6e53a.png')">
+            <img src="Screenshot_20230317-201755-02ae56d727d6e53a.png" alt="Screenshot_20230317-201755-02ae56d727d6e53a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230505-161539-9dac2377b172fea0.png')">
+            <img src="Screenshot_20230505-161539-9dac2377b172fea0.png" alt="Screenshot_20230505-161539-9dac2377b172fea0.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230505-163932-7427a7740ee7c1b6.png')">
+            <img src="Screenshot_20230505-163932-7427a7740ee7c1b6.png" alt="Screenshot_20230505-163932-7427a7740ee7c1b6.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230505-174312-729735ec4f4b463c.png')">
+            <img src="Screenshot_20230505-174312-729735ec4f4b463c.png" alt="Screenshot_20230505-174312-729735ec4f4b463c.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230505-174323-d3c0493543da8226.png')">
+            <img src="Screenshot_20230505-174323-d3c0493543da8226.png" alt="Screenshot_20230505-174323-d3c0493543da8226.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230618-000929-3fe95e5d5ad634c7.png')">
+            <img src="Screenshot_20230618-000929-3fe95e5d5ad634c7.png" alt="Screenshot_20230618-000929-3fe95e5d5ad634c7.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Screenshot_20230729-160628-8c983bb51dcb143a.png')">
+            <img src="Screenshot_20230729-160628-8c983bb51dcb143a.png" alt="Screenshot_20230729-160628-8c983bb51dcb143a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'shutterstock_109665086-4526450d3eef61c2.png')">
+            <img src="shutterstock_109665086-4526450d3eef61c2.png" alt="shutterstock_109665086-4526450d3eef61c2.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'SPOILER_20230129_235455-e8f09c7a5101005a.jpg')">
+            <img src="SPOILER_20230129_235455-e8f09c7a5101005a.jpg" alt="SPOILER_20230129_235455-e8f09c7a5101005a.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'SPOILER_lmao-19b8bb86bd86975f.png')">
+            <img src="SPOILER_lmao-19b8bb86bd86975f.png" alt="SPOILER_lmao-19b8bb86bd86975f.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'trinidad_breas_expedition_april_mp_0-4ed92e30964eb19b.png')">
+            <img src="trinidad_breas_expedition_april_mp_0-4ed92e30964eb19b.png" alt="trinidad_breas_expedition_april_mp_0-4ed92e30964eb19b.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'tundra-7-e1568735509535-884ac1e3bb27fa7a.png')">
+            <img src="tundra-7-e1568735509535-884ac1e3bb27fa7a.png" alt="tundra-7-e1568735509535-884ac1e3bb27fa7a.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'tundra1-e1539985634129-231da83be5302a66.png')">
+            <img src="tundra1-e1539985634129-231da83be5302a66.png" alt="tundra1-e1539985634129-231da83be5302a66.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'unknown-40fa2f4d86d1c6c4.png')">
+            <img src="unknown-40fa2f4d86d1c6c4.png" alt="unknown-40fa2f4d86d1c6c4.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'unknown-730255c81a51b349.png')">
+            <img src="unknown-730255c81a51b349.png" alt="unknown-730255c81a51b349.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'unknown-c51e1eff2d12e946.png')">
+            <img src="unknown-c51e1eff2d12e946.png" alt="unknown-c51e1eff2d12e946.png" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Y34VG54OPRFQZKSIKTX5JMYSVE-e8f466b30bc0505b.jpg')">
+            <img src="Y34VG54OPRFQZKSIKTX5JMYSVE-e8f466b30bc0505b.jpg" alt="Y34VG54OPRFQZKSIKTX5JMYSVE-e8f466b30bc0505b.jpg" loading="lazy">
+        </div>
+        <div class="card" onclick="openLightbox('img', 'Yellowstone_Grand%2520Prismatic%2520Spring-ad9aae293c35bdf8.jpg')">
+            <img src="Yellowstone_Grand%2520Prismatic%2520Spring-ad9aae293c35bdf8.jpg" alt="Yellowstone_Grand%2520Prismatic%2520Spring-ad9aae293c35bdf8.jpg" loading="lazy">
+        </div>
+    </div>
+
+    <h2>Videos</h2>
+    <div class="grid">
+        <div class="card" onclick="openLightbox('video', 'adachi-true-9b2efffafc80f5a0.mp4')">
+            <video src="adachi-true-9b2efffafc80f5a0.mp4" muted></video>
+        </div>
+        <div class="card" onclick="openLightbox('video', 'lv_0_20230617233040-fd7ff00a6d98e90d.mp4')">
+            <video src="lv_0_20230617233040-fd7ff00a6d98e90d.mp4" muted></video>
+        </div>
+        <div class="card" onclick="openLightbox('video', 'lv_0_20230618000106-e0b2bea0bb165056.mp4')">
+            <video src="lv_0_20230618000106-e0b2bea0bb165056.mp4" muted></video>
+        </div>
+        <div class="card" onclick="openLightbox('video', 'lv_0_20230618003443-f1279ddd740d02cd.mp4')">
+            <video src="lv_0_20230618003443-f1279ddd740d02cd.mp4" muted></video>
+        </div>
+        <div class="card" onclick="openLightbox('video', 'lv_0_20230618004104-c70f3979675d3944.mp4')">
+            <video src="lv_0_20230618004104-c70f3979675d3944.mp4" muted></video>
+        </div>
+        <div class="card" onclick="openLightbox('video', 'pizza-tower-nice-8aca8deeb72b90fe.mp4')">
+            <video src="pizza-tower-nice-8aca8deeb72b90fe.mp4" muted></video>
+        </div>
+        <div class="card" onclick="openLightbox('video', 'pizza-tower-s-rank-476971d8d5cba15b.mp4')">
+            <video src="pizza-tower-s-rank-476971d8d5cba15b.mp4" muted></video>
+        </div>
+        <div class="card" onclick="openLightbox('video', 'skeleton-ef2720812443a7c6.mp4')">
+            <video src="skeleton-ef2720812443a7c6.mp4" muted></video>
+        </div>
+        <div class="card" onclick="openLightbox('video', 'Video_230618052148-8a32b732acf3697c.mp4')">
+            <video src="Video_230618052148-8a32b732acf3697c.mp4" muted></video>
+        </div>
+    </div>
+
+    <h2>Audios y Composiciones</h2>
+    <div class="list-container">
+        <div class="list-item">
+            <span>gabriel_motif-f299d6760fe07b1e.mid</span>
+            <audio controls src="gabriel_motif-f299d6760fe07b1e.mid"></audio>
+        </div>
+        <div class="list-item">
+            <span>irene_vs_bicho_del_volcan-39e88511fe8e1cab.wav</span>
+            <audio controls src="irene_vs_bicho_del_volcan-39e88511fe8e1cab.wav"></audio>
+        </div>
+        <div class="list-item">
+            <span>motif_irene-535178ec686de6d1.mp3</span>
+            <audio controls src="motif_irene-535178ec686de6d1.mp3"></audio>
+        </div>
+        <div class="list-item">
+            <span>motif_nico-b826d76aed7435ce.mp3</span>
+            <audio controls src="motif_nico-b826d76aed7435ce.mp3"></audio>
+        </div>
+        <div class="list-item">
+            <span>motif_nieve_y_volcan-e65e171e0da146c7.mid</span>
+            <audio controls src="motif_nieve_y_volcan-e65e171e0da146c7.mid"></audio>
+        </div>
+        <div class="list-item">
+            <span>Paletus-527005b7ea661836.mid</span>
+            <audio controls src="Paletus-527005b7ea661836.mid"></audio>
+        </div>
+        <div class="list-item">
+            <span>pruebas_motif_ringeus_orquestales-9ff8b82a1e8a65a5.mp3</span>
+            <audio controls src="pruebas_motif_ringeus_orquestales-9ff8b82a1e8a65a5.mp3"></audio>
+        </div>
+        <div class="list-item">
+            <span>trailer_rw-bf03cdb6e0d51de8.mp3</span>
+            <audio controls src="trailer_rw-bf03cdb6e0d51de8.mp3"></audio>
+        </div>
+        <div class="list-item">
+            <span>tundra_nevada-9848da280defc739.mp3</span>
+            <audio controls src="tundra_nevada-9848da280defc739.mp3"></audio>
+        </div>
+    </div>
+
+    <h2>Proyectos y Otros Archivos</h2>
+    <div class="list-container">
+        <div class="list-item">
+            <span>06048f36-7858-67df-9926-893ccace2bf1-b964b2b5967de06b</span>
+            <a href="06048f36-7858-67df-9926-893ccace2bf1-b964b2b5967de06b" download>Descargar / Abrir</a>
+        </div>
+        <div class="list-item">
+            <span>1301_sin_titulo-5ee2d981c1bf51f3.psd</span>
+            <a href="1301_sin_titulo-5ee2d981c1bf51f3.psd" download>Descargar / Abrir</a>
+        </div>
+        <div class="list-item">
+            <span>ADP-6oGGL96i6JxDHmXNPInniIopmAZEsgvX18hmf1-a557bab8469250b7</span>
+            <a href="ADP-6oGGL96i6JxDHmXNPInniIopmAZEsgvX18hmf1-a557bab8469250b7" download>Descargar / Abrir</a>
+        </div>
+        <div class="list-item">
+            <span>AOD9vFpMR6VuskQqsQ0_ehV6BfT1FZg3ZjF41Xqqzv-1e1fd3b537f90142</span>
+            <a href="AOD9vFpMR6VuskQqsQ0_ehV6BfT1FZg3ZjF41Xqqzv-1e1fd3b537f90142" download>Descargar / Abrir</a>
+        </div>
+        <div class="list-item">
+            <span>KdCEEQRBujIjQOAbzVb0k9LO6okmdfHMCw1ToKpA4G-3f3dcbe6fe34daf8</span>
+            <a href="KdCEEQRBujIjQOAbzVb0k9LO6okmdfHMCw1ToKpA4G-3f3dcbe6fe34daf8" download>Descargar / Abrir</a>
+        </div>
+        <div class="list-item">
+            <span>latest-fa7f1089c1b250e5</span>
+            <a href="latest-fa7f1089c1b250e5" download>Descargar / Abrir</a>
+        </div>
+        <div class="list-item">
+            <span>lottie.min-996575f9aeee11ac.js</span>
+            <a href="lottie.min-996575f9aeee11ac.js" download>Descargar / Abrir</a>
+        </div>
+        <div class="list-item">
+            <span>ringeus-1bc1bdf788f6c0ab.flp</span>
+            <a href="ringeus-1bc1bdf788f6c0ab.flp" download>Descargar / Abrir</a>
+        </div>
+        <div class="list-item">
+            <span>tundra_nevada-c6f4adec28d3bf71.flp</span>
+            <a href="tundra_nevada-c6f4adec28d3bf71.flp" download>Descargar / Abrir</a>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" onclick="closeLightbox(event)">
+        <span id="close-btn" onclick="closeLightbox(event)">&times;</span>
+        <div id="lightbox-content"></div>
+        <div id="lightbox-caption"></div>
+    </div>
+
+    <script>
+        function openLightbox(type, src) {{
+            const lightbox = document.getElementById('lightbox');
+            const content = document.getElementById('lightbox-content');
+            const caption = document.getElementById('lightbox-caption');
+            
+            if (type === 'img') {{
+                content.innerHTML = `<img src="${src}" alt="Imagen ampliada">`;
+            }} else if (type === 'video') {{
+                content.innerHTML = `<video src="${src}" controls autoplay></video>`;
+            }}
+            
+            caption.innerText = src;
+            lightbox.style.display = 'flex';
+        }}
+
+        function closeLightbox(e) {{
+            if (e.target.id === 'lightbox' || e.target.id === 'close-btn') {{
+                const lightbox = document.getElementById('lightbox');
+                const content = document.getElementById('lightbox-content');
+                
+                // Detener el video si se está reproduciendo
+                content.innerHTML = ''; 
+                lightbox.style.display = 'none';
+            }}
+        }}
+    </script>
+</body>
+</html>
