@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GODS CONSOLE</title>
     <style>
-        /* Reseteo y fondo general */
+
         body {
             background-color: #050505;
             display: flex;
@@ -16,7 +16,7 @@
             overflow: hidden;
         }
 
-        /* Contenedor principal de la pantalla CRT */
+
         .crt-monitor {
             position: relative;
             width: 90%;
@@ -29,7 +29,7 @@
             overflow-y: auto;
         }
 
-        /* Capa de líneas de escaneo (Scanlines) */
+
         .crt-monitor::after {
             content: "";
             position: absolute;
@@ -40,7 +40,7 @@
             z-index: 10;
         }
 
-        /* Capa de viñeta oscura para los bordes */
+
         .crt-monitor::before {
             content: " ";
             display: block;
@@ -51,10 +51,10 @@
             z-index: 11;
         }
 
-        /* Estilo del texto */
+
         .log-text {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 15px;
+            font-size: 20px;
             line-height: 1.4;
             color: #d0d0d0;
             text-shadow: 0 0 3px rgba(200, 200, 200, 0.6);
@@ -62,7 +62,7 @@
             animation: textFlicker 0.15s infinite alternate;
         }
 
-        /* Colores específicos del Log */
+
         .red { 
             color: #ff5555; 
             text-shadow: 0 0 4px rgba(255, 85, 85, 0.7); 
@@ -76,7 +76,7 @@
             text-shadow: none; 
         }
 
-        /* Pequeño parpadeo para mayor realismo */
+
         @keyframes textFlicker {
             0% { opacity: 0.95; }
             100% { opacity: 1; }
