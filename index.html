@@ -3,9 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CRT Combat Log</title>
+    <style>
+        /* Reseteo y fondo general */
+        body {
+            background-color: #050505;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Contenedor principal de la pantalla CRT */
+        .crt-monitor {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            background-color: #111;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            overflow-y: auto;
+        }
+
+        /* Capa de líneas de escaneo (Scanlines) */
+        .crt-monitor::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Capa de viñeta oscura para los bordes */
+        .crt-monitor::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0) 50%, rgba(0,0,0,0.6) 100%);
+            pointer-events: none;
+            z-index: 11;
+        }
+
+        /* Estilo del texto */
+        .log-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 15px;
+            line-height: 1.4;
+            color: #d0d0d0;
+            text-shadow: 0 0 3px rgba(200, 200, 200, 0.6);
+            margin: 0;
+            animation: textFlicker 0.15s infinite alternate;
+        }
+
+        /* Colores específicos del Log */
+        .red { 
+            color: #ff5555; 
+            text-shadow: 0 0 4px rgba(255, 85, 85, 0.7); 
+        }
+        .green { 
+            color: #55ff55; 
+            text-shadow: 0 0 4px rgba(85, 255, 85, 0.7); 
+        }
+        .dim { 
+            color: #777; 
+            text-shadow: none; 
+        }
+
+        /* Pequeño parpadeo para mayor realismo */
+        @keyframes textFlicker {
+            0% { opacity: 0.95; }
+            100% { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-    <p>gofuckyourself</p>
+
+    <div class="crt-monitor">
+        <pre class="log-text">
+    <span class="red">God hates the one who are you.</span>
+        </pre>
+    </div>
+
 </body>
 </html>
