@@ -5,95 +5,209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GODS CONSOLE</title>
     <style>
+        :root {
+            
+            
+            --bg-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkBWB891rG-oFvHAHUTdifTPkjK6PxeEWy9Szi-yxTRg&s');
+            
+            
+            --bg-image-opacity: 0.6; 
+
+            
+            --bg-color: #030303;
+            --monitor-bg: #0a0a0a;
+            --text-red: #ff4444;
+            --text-green: #44ff44;
+            --text-dim: #666666;
+            --text-default: #d0d0d0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
-            background-color: #050505;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            background-color: var(--bg-color);
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
             overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
         }
 
-
+        
         .crt-monitor {
             position: relative;
-            width: 90%;
-            max-width: 800px;
+            width: min(90%, 850px);
             height: 80vh;
-            background-color: #111;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(255, 255, 255, 0.05);
-            overflow-y: auto;
+            background-color: var(--monitor-bg);
+            border-radius: 20px;
+            box-shadow: 
+                0 0 60px rgba(0, 0, 0, 0.95), 
+                inset 0 0 35px rgba(255, 255, 255, 0.03);
+            overflow: hidden; 
         }
 
-
-        .crt-monitor::after {
+        
+        .crt-monitor::before {
             content: "";
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            background-size: 100% 4px;
+            inset: 0;
+            background-image: var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: var(--bg-image-opacity);
+            pointer-events: none;
+            z-index: 1;
+            filter: grayscale(80%) contrast(150%);
+        }
+
+        
+        .crt-overlay {
+            position: absolute;
+            inset: 0;
             pointer-events: none;
             z-index: 10;
+            border-radius: inherit;
+            
+            
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.45) 50%
+            ),
+            
+            radial-gradient(
+                circle, 
+                rgba(0, 0, 0, 0) 55%, 
+                rgba(0, 0, 0, 0.85) 100%
+            );
+            background-size: 100% 4px, 100% 100%;
         }
 
-
-        .crt-monitor::before {
-            content: " ";
-            display: block;
+        
+        .crt-overlay::after {
+            content: "";
             position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: radial-gradient(circle, rgba(255,255,255,0) 50%, rgba(0,0,0,0.6) 100%);
-            pointer-events: none;
-            z-index: 11;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.015);
+            opacity: 0.6;
+            animation: staticNoise 0.2s infinite;
         }
 
+        
+        .crt-content {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 2.5rem 2.5rem 6rem 2.5rem; 
+            scroll-behavior: smooth;
+        }
 
+        
         .log-text {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 20px;
-            line-height: 1.4;
-            color: #d0d0d0;
-            text-shadow: 0 0 3px rgba(200, 200, 200, 0.6);
-            margin: 0;
-            animation: textFlicker 0.15s infinite alternate;
+            font-size: clamp(1rem, 2.2vw, 1.2rem);
+            line-height: 1.6;
+            color: var(--text-default);
+            white-space: pre-line;
+            word-break: break-word;
+            margin-bottom: 2rem; 
+            
+            
+            text-shadow: 
+                -1px 0 rgba(255, 0, 0, 0.5), 
+                 1px 0 rgba(0, 255, 255, 0.5),
+                 0 0 4px rgba(200, 200, 200, 0.4);
+            
+            animation: crtFlicker 0.12s infinite alternate;
         }
 
+        
+        .crt-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .crt-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        .crt-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 85, 85, 0.35); 
+            border-radius: 10px;
+        }
+        .crt-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 85, 85, 0.6);
+        }
 
+        
         .red { 
-            color: #ff5555; 
-            text-shadow: 0 0 4px rgba(255, 85, 85, 0.7); 
+            color: var(--text-red); 
+            text-shadow: 
+                -1.5px 0 rgba(255, 0, 0, 0.7), 
+                 1.5px 0 rgba(0, 255, 255, 0.3),
+                 0 0 6px rgba(255, 68, 68, 0.6); 
         }
         .green { 
-            color: #55ff55; 
-            text-shadow: 0 0 4px rgba(85, 255, 85, 0.7); 
+            color: var(--text-green); 
+            text-shadow: 
+                -1.5px 0 rgba(0, 255, 0, 0.7), 
+                 1.5px 0 rgba(0, 255, 255, 0.3),
+                 0 0 6px rgba(68, 255, 68, 0.6); 
         }
         .dim { 
-            color: #777; 
+            color: var(--text-dim); 
             text-shadow: none; 
         }
 
+        
+        @keyframes crtFlicker {
+            0% { opacity: 0.92; }
+            50% { opacity: 1; }
+            100% { opacity: 0.96; }
+        }
 
-        @keyframes textFlicker {
-            0% { opacity: 0.95; }
-            100% { opacity: 1; }
+        @keyframes staticNoise {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-1px, 1px); }
+            20% { transform: translate(1px, -1px); }
+            30% { transform: translate(-2px, 0); }
+            40% { transform: translate(1px, 2px); }
+            50% { transform: translate(-1px, -1px); }
+            60% { transform: translate(2px, 0); }
+            70% { transform: translate(0, 1px); }
+            80% { transform: translate(1px, -2px); }
+            90% { transform: translate(-1px, 1px); }
+            100% { transform: translate(0, 0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="crt-monitor">
-        <pre class="log-text">
-    <span class="red">God hates the one who you are.</span>
-    <span class="red">I'm at your door.</span>
-    <span class="dim">AMONG US.</span>
-    <span class="green">Perdón he dejado salir mi dark side jijiji soy PUTO CRINGE
-    </span>
-        </pre>
-    </div>
+    <main class="crt-monitor">
+        
+        <div class="crt-overlay"></div>
+
+        
+        <div class="crt-content">
+            
+            <p class="log-text red">
+    I SEE ICY ULYSSES FROZEN UPON THE WINE DARK HIGH SEA. EUCHARISTIC FLESH AND BLOOD, BORN IN PAIN. THIS IS MAN. EVEN AGAINST THE ODDS, WRIT BY ADAM, MURDER IS IN THEIR NURTURE: THE EPISTOLARY PLOSIVES OF AIR RAIDS, THE OPEN GRAVES, MASSED CORPSES WITH CROW-PECKED SOCKETS, THE SIGHT'S REST LEFT UNSEEN - INSIPID AND INSOLENT IN SO FEAR'D AS TWO GRIEVERS CRY THERE WILL BE NO PEACE.
+
+SEE THE NATURE OF A SYMPHONY: ONE ONE-HUNDRED UNIVERSES AND CHORUSES. NOTES, NOTES, SO FORTH AND NOTHING. NO. I SEE HUES CLEARLY NOW: SUCH SHADEFUL SIGHTS TO SHOW YOU - THE WRITER STAYS HIS HAND AND THE STORY WRITES ITS SELF.
+
+YOU LOOK INTO YOUR LOVE'S EYES AND SEE A STRANGER. BELLUM OMNIUM CONTRA OMNES. MAN IS WOLF TO MAN. THIS ANTEDILUVIAN CRUELTY BY SEED YOU CARRY ONWARD. EYE FOR AN I, EACH GENERATION FORGETS THE SCARS OF THE LAST. NOTHING LASTS. A VIEW TO A THRILL, A VISION OF THE FUTURE:
+
+I SEE TO YOU, SON OF SOUL: EAT. EAT. YEARN FOR MORE! OVER AND OVER! UNTIL ALL THAT REMAINS IS THE KNOWLEDGE THAT THIS WAS
+A L L
+Y O U R
+F A U L T .
+            </p>
+        </div>
+    </main>
 
 </body>
 </html>
