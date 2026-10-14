@@ -1,0 +1,266 @@
+@font-face {
+    font-family: 'FS Tahoma 8px';
+    src: url('./fs-tahoma-8px.ttf') format('truetype');
+}
+
+:root {
+    --bg-image: none;
+    --bg-image-opacity: 0.1;
+    --bg-image-filter: grayscale(80%) contrast(150%);
+    --bg-image-scale: 1;
+    --scanline-density: 4px;
+    --scanline-opacity: 0.3;
+
+    /* Tamaño considerablemente mayor manteniendo límites seguros en pantalla */
+    --monitor-width: 1200px;
+    --monitor-height: 92dvh;
+    --monitor-border-radius: 24px;
+    --monitor-bg: #0a0a0a;
+    --monitor-border: 1px solid rgba(255, 255, 255, 0.05);
+    --monitor-shadow: 0 0 60px rgba(0, 0, 0, 0.95), inset 0 0 35px rgba(255, 255, 255, 0.03);
+
+    --font-family: 'FS Tahoma 8px', monospace;
+    --font-size: 40px;
+    --letter-spacing: 0.5px;
+    --line-height: 1.4;
+    --text-padding: 1.5rem;
+
+    --bg-color: #030303;
+    --text-default: #d0d0d0;
+    --text-red: #ff4444;
+    --text-green: #44ff44;
+    --text-dim: #666666;
+
+    --text-custom: #c96ddb;
+    --text-custom-glow: #7f298e;
+
+    --chromatic-red-shift: -1px 0 rgba(255, 0, 0, 0.4);
+    --chromatic-blue-shift: 1px 0 rgba(0, 255, 255, 0.4);
+    --text-glow: 0 0 2px rgba(200, 200, 200, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    min-height: 100dvh; /* Soporte mejorado para navegadores móviles */
+    overflow: hidden;
+    font-family: var(--font-family);
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+}
+
+.crt-monitor {
+    position: relative;
+    /* Usa el 94% del ancho disponible o el 92% del alto disponible, manteniendo 1:1 */
+    width: min(94vw, var(--monitor-width), var(--monitor-height));
+    aspect-ratio: 1 / 1;
+    background-color: var(--monitor-bg);
+    border-radius: var(--monitor-border-radius);
+    border: var(--monitor-border);
+    box-shadow: var(--monitor-shadow);
+    overflow: hidden;
+}
+
+.crt-monitor::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: var(--bg-image-opacity);
+    pointer-events: none;
+    z-index: 1;
+    filter: var(--bg-image-filter);
+    transform: scale(var(--bg-image-scale));
+}
+
+.crt-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    border-radius: inherit;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, var(--scanline-opacity)) 50%
+    ),
+    radial-gradient(
+        circle,
+        rgba(0, 0, 0, 0) 70%,
+        rgba(0, 0, 0, 0.75) 100%
+    );
+    background-size: 100% var(--scanline-density), 100% 100%;
+}
+
+.crt-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.015);
+    opacity: 0.6;
+    animation: staticNoise 0.2s infinite;
+}
+
+.crt-content {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: var(--text-padding);
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Desplazamiento fluido en iOS/Móviles */
+}
+
+.log-text {
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
+    color: var(--text-default);
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    margin-bottom: 2rem;
+    text-shadow:
+        var(--chromatic-red-shift),
+        var(--chromatic-blue-shift),
+        var(--text-glow);
+    animation: crtFlicker 0.12s infinite alternate;
+}
+
+.crt-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.crt-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.crt-content::-webkit-scrollbar-thumb {
+    background: rgba(99, 99, 99, 0.35);
+    border-radius: 10px;
+}
+
+.crt-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(95, 95, 95, 0.6);
+}
+
+.red {
+    color: var(--text-red);
+    text-shadow:
+        -1px 0 rgba(255, 0, 0, 0.5),
+        1px 0 rgba(0, 255, 255, 0.3),
+        0 0 3px var(--text-red);
+}
+
+.green {
+    color: var(--text-green);
+    text-shadow:
+        -1px 0 rgba(0, 255, 0, 0.5),
+        1px 0 rgba(0, 255, 255, 0.3),
+        0 0 3px var(--text-green);
+}
+
+.dim {
+    color: var(--text-dim);
+    text-shadow: none;
+}
+
+.custom {
+    color: var(--text-custom);
+    text-shadow:
+        -1px 0 rgba(255, 0, 255, 0.5),
+        1px 0 rgba(0, 255, 255, 0.3),
+        0 0 3px var(--text-custom-glow);
+}
+
+@keyframes crtFlicker {
+    0% { opacity: 0.92; }
+    50% { opacity: 1; }
+    100% { opacity: 0.96; }
+}
+
+@keyframes staticNoise {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-1px, 1px); }
+    20% { transform: translate(1px, -1px); }
+    30% { transform: translate(-2px, 0); }
+    40% { transform: translate(1px, 2px); }
+    50% { transform: translate(-1px, -1px); }
+    60% { transform: translate(2px, 0); }
+    70% { transform: translate(0, 1px); }
+    80% { transform: translate(1px, -2px); }
+    90% { transform: translate(-1px, 1px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* =========================================
+   SOPORTE RESPONSIVE (TABLETS Y TELÉFONOS)
+   ========================================= */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    :root {
+        --monitor-height: 90dvh;
+        --monitor-border-radius: 18px;
+        --font-size: 32px; /* Múltiplo de 8px para mantener nitidez en fuente pixel */
+        --text-padding: 1.25rem;
+    }
+
+    .crt-monitor {
+        width: min(94vw, var(--monitor-height));
+    }
+}
+
+/* Teléfonos móviles en vertical */
+@media (max-width: 600px) {
+    :root {
+        --monitor-border-radius: 14px;
+        --font-size: 24px; /* Múltiplo de 8px ideal para pantallas pequeñas */
+        --text-padding: 1rem;
+        --scanline-density: 3px;
+    }
+
+    .crt-monitor {
+        /* Ocupa casi todo el ancho de la pantalla manteniendo la proporción cuadrada 1:1 */
+        width: min(96vw, 90dvh);
+    }
+
+    .crt-content::-webkit-scrollbar {
+        width: 5px;
+    }
+}
+
+/* Teléfonos muy pequeños */
+@media (max-width: 380px) {
+    :root {
+        --font-size: 16px;
+        --text-padding: 0.75rem;
+    }
+}
+
+/* Teléfonos en modo horizontal (Landscape) */
+@media (max-height: 500px) and (orientation: landscape) {
+    :root {
+        --monitor-height: 94dvh;
+        --monitor-border-radius: 12px;
+        --font-size: 24px;
+        --text-padding: 0.85rem;
+    }
+
+    .crt-monitor {
+        width: min(94vw, var(--monitor-height));
+    }
+}
